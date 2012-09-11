@@ -2,8 +2,6 @@
 #include <cstdlib>
 #include "base.h"
 
-namespace qwaker {
-
 int rand32() {
     return (int(rand()) << 20) ^ (int(rand()) << 10) ^ int(rand());
 }
@@ -30,6 +28,4 @@ int randint(int l, int r) {
 
 double randfloat() {
     return LD(randu64()) / (1ll << 32) / (1ll << 32);
-}
-
 }
