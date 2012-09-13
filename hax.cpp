@@ -18,6 +18,7 @@
 typedef long double LD;
 typedef long long LL;
 typedef unsigned long long ULL;
+typedef unsigned int uint;
 
 #define PI 3.1415926535897932384626433832795
 #define sqr(x) ((x)*(x))

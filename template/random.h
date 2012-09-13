@@ -1,6 +1,6 @@
 #pragma once
-#include <cstdlib>
 #include "base.h"
+#include <cstdlib>
 
 int rand32() {
     return (int(rand()) << 20) ^ (int(rand()) << 10) ^ int(rand());

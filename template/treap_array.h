@@ -1,5 +1,4 @@
 #pragma once
-#include "base.h"
 #include "random.h"
 
 template<typename T = int>

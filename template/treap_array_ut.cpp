@@ -1,8 +1,9 @@
-#include "treap_array.h"
 #include <iostream>
 #include <cstdio>
 #include <ctime>
 #include <vector>
+
+#include "treap_array.h"
 
 using namespace std;
 
