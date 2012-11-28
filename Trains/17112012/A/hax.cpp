@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -26,12 +25,15 @@ typedef unsigned int uint;
 
 using namespace std;
 
+char a[1111111], b[1111111];
 
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
+//    freopen(".in", "r", stdin);
+//    freopen(".out", "w", stdout);
+
+    gets(a);
+    gets(b);
+    puts( strlen(a) >= strlen(b) ? "go" : "no");
     
-
-
     return 0;
 }

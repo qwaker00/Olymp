@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -31,7 +30,5 @@ int main() {
     freopen(".in", "r", stdin);
     freopen(".out", "w", stdout);
     
-
-
     return 0;
 }

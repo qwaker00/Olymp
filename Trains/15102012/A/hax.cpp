@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -28,10 +27,15 @@ using namespace std;
 
 
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
+    freopen("ate.in", "r", stdin);
+    freopen("ate.out", "w", stdout);
     
-
+    int n;
+    cin >> n;
+    int ans = 0;
+    for (int i = 0; i <= min(n, 99); ++i)
+        if (n - i >= 0 && n - i < 100) ++ans;
+    cout << ans << endl;   
 
     return 0;
 }

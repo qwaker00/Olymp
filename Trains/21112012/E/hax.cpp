@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -27,11 +26,30 @@ typedef unsigned int uint;
 using namespace std;
 
 
+int cnt[1111111];
+int was[1111111];
+
 int main() {
     freopen(".in", "r", stdin);
     freopen(".out", "w", stdout);
+
+    int IT = 0;
+    int ans = 1;
+    for (int i = 0; i < 2010; i++) {
+        IT++;
+        int x = i;
+        int cnt = 0;
+        while (was[x] != IT) {
+            was[x] = IT;
+            x = (x * x) % 2010;
+            cnt++;
+        } 
+        ans = ans * cnt / __gcd(ans, cnt);
+//        cerr << cnt << endl;
+//        cerr << x << endl;
+//        cnt[x]++;
+    }
+    cerr << ans << endl;
     
-
-
     return 0;
 }

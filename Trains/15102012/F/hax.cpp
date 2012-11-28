@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -26,12 +25,25 @@ typedef unsigned int uint;
 
 using namespace std;
 
+string s;
+int n, a, c;
+LL ans1, ans2, ans3, balk = 0;
 
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
+    freopen("flat.in", "r", stdin);
+    freopen("flat.out", "w", stdout);
+
+    cin >> n >> c;
+    for (int i = 0; i< n; i++) {
+        cin >> a >> s;
+        ans1 += a;
+        if (s == "bedroom") ans2 += a;
+        if (s == "balcony") balk += a;
+    }
+    cout.precision(2);
+    cout << fixed;
+    cout << ans1 << endl << ans2 << endl << LD(ans1 - 0.5 * balk) * c << endl;
+
     
-
-
     return 0;
 }

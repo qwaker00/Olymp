@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -27,11 +26,28 @@ typedef unsigned int uint;
 using namespace std;
 
 
+int n, sum;
+
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
-    
-
-
+//    freopen(".in", "r", stdin);
+//    freopen(".out", "w", stdout);
+    cin >> n;
+    sum = 14;
+    int i = 1;
+    while (sum <= n) {
+        if (i == 1) {
+            if (n == 21) {
+                cout << i << endl;
+                return 0;
+            }
+        } else
+        if (n - sum <= 12 && n - sum >= 2) { 
+            cout << i << endl;
+            return 0;
+        }
+        ++i;
+        sum += 14;
+    }    
+    cout << -1 << endl;
     return 0;
 }

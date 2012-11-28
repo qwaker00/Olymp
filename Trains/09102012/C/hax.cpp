@@ -14,7 +14,6 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
 typedef long long LL;
@@ -28,10 +27,19 @@ using namespace std;
 
 
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
+    //freopen(".in", "r", stdin);
+    //freopen(".out", "w", stdout);
+
+    LD R, h1, h2, x;
+    cin >> R >> h1 >> h2 >> x;
+    cout.precision(20);
+                                 
+    LD old = (PI * R * sqrtl(R*R + h2 * h2));
+    LD nw = 0.5 * x * sqrtl(R * R + h2*h2);
+
+
+    cout << fixed <<  (nw + h1 * x) / (2. * old + 2. * PI * R * h1) * 100. << endl;
+
     
-
-
     return 0;
 }

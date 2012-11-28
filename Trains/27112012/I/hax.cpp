@@ -14,10 +14,9 @@
 #include <map>
 #include <functional>
 #include <numeric>
-#include <sstream>
 
 typedef long double LD;
-typedef long long LL;
+typedef long long ll;
 typedef unsigned long long ULL;
 typedef unsigned int uint;
 
@@ -28,10 +27,14 @@ using namespace std;
 
 
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
+    freopen("python.in", "r", stdin);
+    freopen("python.out", "w", stdout);
     
-
+    ll a, b;
+    cin >> a >> b;
+    cout << a / (b + 1) << endl;
+    cout << a / b << endl;
+    
 
     return 0;
 }
