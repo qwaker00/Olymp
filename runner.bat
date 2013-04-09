@@ -2,9 +2,9 @@
 
 call :%~x1 %*
 goto :eof
-
     
 :.cpp
+:.c
     if "%2" == "templater" (
         C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\template
     ) else  (
@@ -13,14 +13,24 @@ goto :eof
         ) else  (
             if exist %~n1.exe del %~n1.exe
             if "%2" == "O2" (
-                g++ %~n1.cpp -Wall -o %~n1.exe -O2
+                gcc -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
             ) else (
-                g++ -g %~n1.cpp -Wall -o %~n1.exe
+                gcc -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -D_DEBUG
             )
         )
    )
 goto :eof
 
 :.py
-    C:\Python27\python.exe %*
-goto :eof
+    python.exe %*
+    goto :eof
+
+:.pas
+    if exist %~n1.exe del %~n1.exe
+    if "%2" == "O2" (
+        fpc.exe -O2 %1
+    ) else  (
+        fpc.exe %1
+    )
+    del %~n1.o >nul
+    goto :eof
