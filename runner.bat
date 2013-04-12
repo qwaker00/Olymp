@@ -6,16 +6,16 @@ goto :eof
 :.cpp
 :.c
     if "%2" == "templater" (
-        C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\template
+rem        C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\template
     ) else  (
         if "%2" == "gdb" (
             gdb %~n1.exe
         ) else  (
             if exist %~n1.exe del %~n1.exe
             if "%2" == "O2" (
-                gcc -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
+                g++ -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
             ) else (
-                gcc -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -D_DEBUG
+                g++ -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -D_DEBUG
             )
         )
    )
