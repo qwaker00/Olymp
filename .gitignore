@@ -1,4 +1,8 @@
-*.exe
-*.in
-*.out
-*.txt
+*
+!*/
+!*.c
+!*.py
+!*.cpp
+!*.h
+!*.java
+!*.bat
