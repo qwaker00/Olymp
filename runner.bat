@@ -22,7 +22,11 @@ rem        C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\templa
 goto :eof
 
 :.py
-    python.exe %*
+    if "%2" == "O2" (
+        python.exe %*
+    ) else (
+        python.exe -O %*
+    )
     goto :eof
 
 :.pas
