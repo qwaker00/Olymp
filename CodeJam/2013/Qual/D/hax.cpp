@@ -93,9 +93,11 @@ int main() {
 			puts("IMPOSSIBLE");
 		} else {
 			int msk = 0, cnt = 0;
+            vector<int> ans;
 			for (int i = 0; i < n; ++i)	{
 				for (int j = 0; j < n; ++j)
 					if ( (msk & (1 << j)) == 0 && f[msk | (1 << j)] == 1) {
+                        ans.push_back(j);
 						printf("%d", j + 1);
 						if (i + 1 != n) putchar(' ');
 						msk |= (1 << j);

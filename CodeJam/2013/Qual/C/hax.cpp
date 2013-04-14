@@ -33,7 +33,7 @@ int main() {
     freopen("out", "w", stdout);
     
 
-    for (int i = 1; i <= 1000000000; ++i) {
+    for (int i = 1; i <= 100000000; ++i) {
     	int x = i, y = 0;
     	while (x > 0) {
     		y = y * 10 + x % 10;
@@ -48,9 +48,10 @@ int main() {
     	}
     	if (yy != ii) continue;
 
-    	cerr << ii << endl;
+    	cerr << ii << " " << i << endl;
     	ans.push_back(ii);
     }
+    exit(0);
 
 	int T;
 	cin >> T;
