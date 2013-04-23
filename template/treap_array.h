@@ -1,6 +1,8 @@
 #pragma once
 #include "random.h"
 
+namespace qwaker {
+
 template<typename T = int>
 class treap_array {
 public:
@@ -175,3 +177,5 @@ protected:
         root->size = __size(root->left) + __size(root->right) + 1;
     }
 };
+
+}

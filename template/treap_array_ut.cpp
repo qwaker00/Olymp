@@ -6,6 +6,7 @@
 #include "treap_array.h"
 
 using namespace std;
+using namespace qwaker;
 
 int main() {    
     const int n = 123897;
@@ -32,17 +33,17 @@ int main() {
 
             vv.assign(v.begin() + l, v.begin() + r);
             v.erase(v.begin() + l, v.begin() + r);
-            for (int j = 0; j < vv.size(); ++j) v.push_back(vv[j]);
+            for (size_t j = 0; j < vv.size(); ++j) v.push_back(vv[j]);
         }
 
         if ((i & (i - 1)) == 0) cerr << "* " << i << endl;
 
-        for (int j = 0; j < v.size(); ++j) if (v[j] != t[j]) {
+        for (size_t j = 0; j < v.size(); ++j) if (v[j] != t[j]) {
             cerr << "Errorrrrr!!!" << endl;
             cerr << l << " " << r << endl;
-            for (int k = 0; k < t.size(); ++k) cerr << t[k] << " ";
+            for (size_t k = 0; k < t.size(); ++k) cerr << t[k] << " ";
             cerr << endl;
-            for (int k = 0; k < v.size(); ++k) cerr << v[k] << " ";
+            for (size_t k = 0; k < v.size(); ++k) cerr << v[k] << " ";
             cerr << endl;
             return 1;
         }
