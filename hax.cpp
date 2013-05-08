@@ -1,3 +1,6 @@
+#ifdef DEBUG
+#define _GLIBCXX_DEBUG
+#endif
 #include <iostream>
 #include <algorithm>
 #include <stdio.h>

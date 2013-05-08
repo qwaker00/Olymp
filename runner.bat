@@ -4,7 +4,6 @@ call :%~x1 %*
 goto :eof
     
 :.cpp
-:.c
     if "%2" == "templater" (
 rem        C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\template
     ) else  (
@@ -13,12 +12,25 @@ rem        C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\templa
         ) else  (
             if exist %~n1.exe del %~n1.exe
             if "%2" == "O2" (
-                g++ -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
+                g++ -Itemplate -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
             ) else (
-                g++ -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -D_DEBUG
+                g++ -Itemplate -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -DDEBUG
             )
         )
    )
+goto :eof
+
+:.c
+    if "%2" == "gdb" (
+        gdb %~n1.exe
+    ) else  (
+        if exist %~n1.exe del %~n1.exe
+        if "%2" == "O2" (
+            gcc -x c %1 -Wall -o %~n1.exe -O2 -static
+        ) else (
+            gcc -x c -g %1 -Wall -o %~n1.exe -O0 -DDEBUG -static
+        )
+    )
 goto :eof
 
 :.py
@@ -26,6 +38,14 @@ goto :eof
         python.exe %*
     ) else (
         python.exe -O %*
+    )
+    goto :eof
+
+:.py3
+    if "%2" == "O2" (
+        python3.exe %*
+    ) else (
+        python3.exe -O %*
     )
     goto :eof
 
