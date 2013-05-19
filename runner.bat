@@ -1,20 +1,22 @@
 @echo off
 
+set OLYMPDIR=C:\Prog\Olymp\
+
 call :%~x1 %*
 goto :eof
     
 :.cpp
     if "%2" == "templater" (
-rem        C:\Olymp\runner.bat C:\Olymp\template\templater.py %1 C:\Olymp\template
+        %OLYMPDIR%\runner.bat %OLYMPDIR%\\template\templater.py %1 %OLYMPDIR%\template
     ) else  (
         if "%2" == "gdb" (
             gdb %~n1.exe
         ) else  (
             if exist %~n1.exe del %~n1.exe
             if "%2" == "O2" (
-                g++ -Itemplate -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
             ) else (
-                g++ -Itemplate -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -DDEBUG
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -DDEBUG
             )
         )
    )
