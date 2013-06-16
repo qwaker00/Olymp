@@ -1,6 +1,5 @@
-complex, fractional
+complex, fractional, matrix
 geometry
 suffmas, lcp
 bigint, quick int128
 allocator
-
