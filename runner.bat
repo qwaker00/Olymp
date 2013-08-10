@@ -14,9 +14,9 @@ goto :eof
         ) else  (
             if exist %~n1.exe del %~n1.exe
             if "%2" == "O2" (
-                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2 %CPPOPT%
             ) else (
-                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -DDEBUG
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -DDEBUG %CPPOPT%
             )
         )
    )
@@ -59,4 +59,12 @@ goto :eof
         fpc.exe %1
     )
     del %~n1.o >nul
+    goto :eof
+
+:.java
+    javac %1
+    goto :eof
+
+:.class
+    java %~n1
     goto :eof
