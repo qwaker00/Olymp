@@ -1,0 +1,1 @@
+C:\Prog\Lang\MinGW\bin\gnatmake.exe aplusb.adb

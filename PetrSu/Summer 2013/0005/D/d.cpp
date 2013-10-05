@@ -118,15 +118,16 @@ inline void GenCubes() {
     }
 }
 
-#define V 5555
+#define V 222222
 int n, m;
 int vCounter;
 vector< pair<char, int> > g[V];
 vector<int> bg[V];
 vector<bool> good, endv;
+vector< pair<int, char> > p;
 
 void Edge(int x, int y, char ch) {
-//    cerr << x << " " << y << " " << ch << endl;
+    //cerr << x << " " << y << " " << ch << endl;
     g[x].push_back(make_pair(ch, y));
     bg[y].push_back(x);
 }
@@ -140,23 +141,29 @@ void AddEdge(int p, int x, int y, int pp, int xx, int yy) {
     for (;s[i + 1] ; ++i) {
         Edge(sv, vCounter, s[i]);
         sv = vCounter;
-        ++vCounter;
+		++vCounter;
     }
     Edge(sv, fv, s[i]);
 }
 
+char ans[12 * 12 * 12];
+int an = 0;
+
 int main() {
-    freopen(".in", "r", stdin);
-    freopen(".out", "w", stdout);
+//    freopen(".in", "r", stdin);
+//    freopen(".out", "w", stdout);
 
     GenCubes();
 
     scanf("%d%d\n", &n, &m);
-    vCounter = n * m * 24;
+    vCounter = (n * m + 1) * 24;
     for (int i = 0; i < n; ++i) {
         gets(s[i]);
     }
     for (int i = 0; i < 6; ++i) gets(ss[i]);
+    int sx, sy, fx, fy;
+    scanf("%d%d%d%d", &sx, &sy, &fx, &fy);
+    --sx; --sy; --fx; --fy;
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
@@ -171,23 +178,22 @@ int main() {
                 }
         }
     }
+    for (int pos = 0; pos < 24; ++pos)
+		AddEdge(pos, fx, fy, pos, n, 0); 
 
     assert(vCounter < V);
 
     for (int i = 0; i < vCounter; ++i) sort(g[i].begin(), g[i].end());
 
-    int sx, sy, fx, fy;
-    scanf("%d%d%d%d", &sx, &sy, &fx, &fy);
-    --sx; --sy; --fx; --fy;
-
     int gc = 0;
     queue<int> q;
     good.resize(vCounter);
-    endv.resize(vCounter);
+	endv.resize(vCounter);
+	p.resize(vCounter);
     for (int i = 0; i < 24; ++i) {
-        int x = (fx * m + fy) * 24 + i;
+        int x = n * m * 24 + i;
         good[x] = true;
-        endv[x] = true;
+		endv[x] = true;
         ++gc;
         q.push(x);
     }
@@ -206,10 +212,10 @@ int main() {
             if (!good[ g[i][j].second ]) {
                 g[i].erase( g[i].begin() + j );
             } else ++j;
-        }                           
+        }                    
     }
 
-    int MaxIter = n * m * 11, iter = 0;
+    int MaxIter = n * m * 22, iter = 0;
     int S = (sx * m + sy) * 24;
 
     if (!good[S]) {
@@ -218,12 +224,12 @@ int main() {
     }
 
     vector<int> front(1, S);
-    bool finita = false;
+    int finita = 0;
     while (++iter <= MaxIter && !finita) {
         vector<int> back;
         back.swap(front);
 
-        char ch = 255;
+        char ch = 127;
         for (size_t i = 0; i < back.size(); ++i)
             ch = min(ch, g[back[i]][0].first);
 
@@ -231,8 +237,10 @@ int main() {
             int x = back[i];
             for (size_t j = 0; j < g[x].size(); ++j) if (g[x][j].first == ch) {
                 front.push_back(g[x][j].second);
+				if (!p[ g[x][j].second ].second)
+					p[ g[x][j].second ] = make_pair(x, ch);
                 if (endv[g[x][j].second]) {
-                    finita = true;
+					finita = g[x][j].second + 1;
                     break;
                 }
             }
@@ -242,7 +250,13 @@ int main() {
         front.erase(unique(front.begin(), front.end()), front.end());
     }
     if (finita) {
-        cout << "M'okey" << endl;
+		int x = finita - 1;
+		while (x != S) {
+			ans[an++] = p[x].second;
+			x = p[x].first;
+		}
+		while (an) putchar(ans[--an]);
+		puts("");
     } else {
         puts("infinite");
         return 0;

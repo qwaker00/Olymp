@@ -1,0 +1,2 @@
+#include<stdio.h>
+main(char*a){int x,i,y=5457241;scanf("%d",&x);for(i=2;i<x;++i)if(x%i==0)break;printf(i<x?a:&y,10,34,34,34,a="#include<stdio.h>%cmain(char*a){int x,i,y=5457241;scanf(%c%%d%c,&x);for(i=2;i<x;++i)if(x%%i==0)break;exit(!printf(i<x?a:&y,10,34,34,34,a=%c%s%c,34));}",34);}
