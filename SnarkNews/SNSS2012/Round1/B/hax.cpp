@@ -41,13 +41,17 @@ int main() {
     for (int i = 2; i <= la; i++) {
     	int k = p[i - 1];
     	while (k > 0 && s[k + 1] != s[i]) k = p[k];
-    	if (s[k + 1] == s[i]) p[i] = k + 1;else p[i] = 0;
+    	if (s[k + 1] == s[i]) {
+            p[i] = k + 1;
+        } else {
+            p[i] = 0;
+        }
     }
 
     int ans = 0;
     f[0][0][0] = 1;
     for (int it = 0; it < 2; it++)
-    for (int i = 0; i < l; i++) {    	
+    for (int i = 0; i < l; i++) {
     	for (int j = 0; j <= la; j++) if (f[it][i][j]) {
     		for (int t = 0; t < 2; t++) {
     			if (s[j + 1] == t + 48)

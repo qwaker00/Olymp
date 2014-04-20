@@ -1,0 +1,71 @@
+#ifdef DEBUG
+#define _GLIBCXX_DEBUG
+#endif
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+#include <memory.h>
+#include <cmath>
+#include <string>
+#include <cstring>
+#include <queue>
+#include <vector>
+#include <set>
+#include <deque>
+#include <map>
+#include <functional>
+#include <numeric>
+#include <sstream>
+#include <complex>
+
+typedef long double LD;
+typedef long long LL;
+typedef unsigned long long ULL;
+typedef unsigned int uint;
+
+#define PI 3.1415926535897932384626433832795
+#define sqr(x) ((x)*(x))
+
+using namespace std;
+
+int a[111], b[111];
+
+int main() {
+//    freopen(".in", "r", stdin);
+//    freopen(".out", "w", stdout);
+
+    int T;
+    cin >> T;
+    while (T--) {
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; ++i) cin >> a[i];
+        for (int i = 0; i < n; ++i) cin >> b[i];
+        int ans = -1;
+        for (int t = 0; t <= 50 * 50; ++t) {
+            bool bad = false;
+            int sum = 0;
+            for (int i = 0; i < n; ++i) {
+                if (a[i] + t < b[i]) {
+                    bad = true;
+                    break;
+                }
+                if ((a[i] + t - b[i]) % 2 == 1) {
+                    bad = true;
+                    break;
+                }
+                sum += (a[i] + t - b[i]) / 2;
+            }
+            if (sum != t) bad = true;
+            if (!bad) {
+                ans = t;
+                break;
+            }
+        }
+        cout << ans << endl;
+    }        
+    
+    return 0;
+}

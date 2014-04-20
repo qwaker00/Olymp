@@ -16,7 +16,7 @@ goto :eof
             if "%2" == "O2" (
                 g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2 %CPPOPT%
             ) else (
-                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -O0 -DDEBUG %CPPOPT%
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -DDEBUG %CPPOPT%
             )
         )
    )
@@ -52,13 +52,17 @@ goto :eof
     goto :eof
 
 :.pas
-    if exist %~n1.exe del %~n1.exe
-    if "%2" == "O2" (
-        fpc.exe -O2 %1
+    if "%2" == "gdb" (
+        gdb %~n1.exe
     ) else  (
-        fpc.exe %1
+        if exist %~n1.exe del %~n1.exe
+        if "%2" == "O2" (
+            fpc.exe -O2 %1
+        ) else  (
+            fpc.exe %1 -g
+        )
+        del %~n1.o >nul
     )
-    del %~n1.o >nul
     goto :eof
 
 :.java

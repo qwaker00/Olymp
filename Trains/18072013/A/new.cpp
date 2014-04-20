@@ -142,7 +142,7 @@ int n;
 vector<bool> BadPoint;
 map<TPoint, int> PointId;
 vector<TPoint> Point;
-vector<vector<int>> g;
+vector< vector<int> > g;
 
 int GetVertex(const TPoint& p) {
     map<TPoint, int>::iterator i = PointId.find(p);
