@@ -1,0 +1,9 @@
+mem = {}
+def solve(n, k):
+    if n < 0 or k < 0 or k > n: return 0
+    if n == 0 or k == 0: return 1
+    if (n, k) in mem: return mem[(n, k)]
+    s = 0
+    for t in range(1, 20): s += solve(n - t, k - 1)
+    mem[(n, k)] = s
+    return s
