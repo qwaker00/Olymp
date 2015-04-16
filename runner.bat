@@ -14,9 +14,9 @@ goto :eof
         ) else  (
             if exist %~n1.exe del %~n1.exe
             if "%2" == "O2" (
-                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 %1 -Wall -o %~n1.exe -O2 %CPPOPT%
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 %1 -Wall -o %~n1.exe -O2 %CPPOPT% -Wl,--stack=268435456
             ) else (
-                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -Wl,--stack=268435456 -g %1 -Wall -o %~n1.exe -DDEBUG %CPPOPT%
+                g++ -I%OLYMPDIR%\template -x c++ -std=c++11 -g %1 -Wall -o %~n1.exe -DDEBUG -D_GLIBCXX_DEBUG -ftrapv %CPPOPT% -Wl,--stack=268435456
             )
         )
    )
@@ -37,9 +37,9 @@ goto :eof
 
 :.py
     if "%2" == "O2" (
-        python.exe %*
-    ) else (
         python.exe -O %*
+    ) else (
+        python.exe %*
     )
     goto :eof
 
